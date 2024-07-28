@@ -9,28 +9,6 @@
       - "sendmail-cf"
   notify: Restart Sendmail
 
-- name: Debug1
-  ansible.builtin.debug:
-    var: sendmail_access_table
-
-- name: Debug2
-  vars:
-    access_table: "{{ sendmail_access_table_default | ansible.builtin.combine(sendmail_access_table) }}"
-  ansible.builtin.debug:
-    var: access_table
-
-- name: Debug3
-  ansible.builtin.debug:
-    var: ansible_hostname
-
-- name: Debug4
-  ansible.builtin.debug:
-    var: ansible_fqdn
-
-- name: Debug5
-  ansible.builtin.debug:
-    var: sendmail_mail_domains
-
 - name: Deploy Sendmail configuration files
   vars:
     access_table: "{{ sendmail_access_table_default | ansible.builtin.combine(sendmail_access_table) }}"
