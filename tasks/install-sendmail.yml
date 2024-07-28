@@ -1,0 +1,84 @@
+# FIXME: smrsh
+# FIXME: aliases
+# FIXME: SAFE_FILE_ENV
+
+- name: Install Sendmail packages
+  ansible.builtin.apt:
+    name:
+      - "sendmail"
+      - "sendmail-cf"
+  notify: Restart Sendmail
+
+- name: Debug1
+  ansible.builtin.debug:
+    var: sendmail_access_table
+
+- name: Debug2
+  vars:
+    access_table: "{{ sendmail_access_table_default | ansible.builtin.combine(sendmail_access_table) }}"
+  ansible.builtin.debug:
+    var: access_table
+
+- name: Debug3
+  ansible.builtin.debug:
+    var: ansible_hostname
+
+- name: Debug4
+  ansible.builtin.debug:
+    var: ansible_fqdn
+
+- name: Debug5
+  ansible.builtin.debug:
+    var: sendmail_mail_domains
+
+- name: Deploy Sendmail configuration files
+  vars:
+    access_table: "{{ sendmail_access_table_default | ansible.builtin.combine(sendmail_access_table) }}"
+  ansible.builtin.template:
+    src: "templates/sendmail/{{ item }}"
+    dest: "/etc/mail/{{ item }}"
+    mode: "0644"
+  loop:
+    - "sendmail.conf"
+    - "sendmail.mc"
+    - "submit.mc"
+    - "local-host-names"
+    - "access"
+    - "domains"
+  notify: Restart Sendmail
+
+- name: Deploy Sendmail starttls.m4 file
+  when: sendmail_mc_tls
+  ansible.builtin.template:
+    src: "templates/sendmail/starttls.m4"
+    dest: "/etc/mail/tls/starttls.m4"
+    mode: "0644"
+  notify: Restart Sendmail
+
+- name: Deploy Sendmail genericstable files
+  when: sendmail_mc_generics
+  vars:
+    generics_table: "{{ sendmail_generics_table }}"
+  ansible.builtin.template:
+    src: "templates/sendmail/genericstable"
+    dest: "/etc/mail/genericstable"
+    mode: "0644"
+  notify: Restart Sendmail
+
+- name: Create Sendmail relay-domains files
+  ansible.builtin.copy:
+    dest: "/etc/mail/relay-domains"
+    content: ""
+  notify: Restart Sendmail
+
+- name: Link SASL configuration file
+  ansible.builtin.file:
+    src: "/etc/mail/sasl/Sendmail.conf.2"
+    dest: "/usr/lib/sasl2/Sendmail.conf"
+    state: "{{ sendmail_mc_sasl | ternary('link', 'absent') }}"
+
+- name: Enable Sendmail service
+  ansible.builtin.service:
+    name: "sendmail"
+    state: "started"
+    enabled: true

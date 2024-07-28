@@ -1,0 +1,94 @@
+sendmail_clamav: true
+sendmail_clamav_unofficial_sigs: false
+
+sendmail_opendkim: false
+sendmail_opendkim_dkimkeys_dir: "/etc/dkimkeys"
+sendmail_opendkim_trusted_hosts: []
+sendmail_opendkim_config:
+  Syslog: "yes"
+  SyslogSuccess: "yes"
+  Canonicalization: "relaxed/simple"
+  OversignHeaders: "From"
+  KeyTable: "/etc/opendkim/KeyTable"
+  SigningTable: "file:/etc/opendkim/SigningTable"
+  InternalHosts: "refile:/etc/opendkim/TrustedHosts"
+  Socket: "inet:8891@localhost"
+
+sendmail_conf_daemon_netmode: "Static"
+sendmail_conf_daemon_netif: "eth0"
+sendmail_conf_daemon_mode: "Daemon"
+sendmail_conf_daemon_parms: ""
+sendmail_conf_daemon_hoststats: "No"
+sendmail_conf_daemon_mailstats: "No"
+sendmail_conf_queue_mode: "Daemon"
+sendmail_conf_queue_interval: "10m"
+sendmail_conf_queue_parms: ""
+sendmail_conf_msp_mode: "Cron"
+sendmail_conf_msp_interval: "20m"
+sendmail_conf_msp_parms: ""
+sendmail_conf_msp_mailstats: "No"
+sendmail_conf_misc_parms: ""
+sendmail_conf_cron_mailto: "root"
+sendmail_conf_cron_parms: ""
+sendmail_conf_log_cmds: "No"
+sendmail_conf_hands_off: "No"
+sendmail_conf_age_data: ""
+
+sendmail_ssl_cert: ""
+sendmail_ssl_key: ""
+
+sendmail_mc_ostype: "{{ ansible_distribution | lower }}"
+sendmail_mc_domain: "{{ (ansible_distribution == 'Debian') | ternary('debian-mta', '') }}"
+
+sendmail_mc_sasl: false
+sendmail_mc_tls: false
+sendmail_mc_auth_options: null
+
+sendmail_mc_refuse_la: null
+sendmail_mc_smart_host: null
+
+sendmail_mc_ldap: false
+sendmail_mc_ldap_default_spec: ""
+sendmail_mc_ldap_cluster: null
+sendmail_mc_ldap_alias: false
+sendmail_mc_ldap_virtusertable: false
+sendmail_mc_ldap_virtusertable_v: ""
+sendmail_mc_ldap_virtusertable_k: ""
+
+sendmail_mc_max_message_size: null
+sendmail_mc_to_ident: 0
+
+# FIXME: changer en dict. avec un merge
+sendmail_mc_daemons:
+  - name: "MTA-v4"
+    family: "inet"
+    port: "smtp"
+    addr: null
+    modifiers: null
+  - name: "MSP-v4"
+    family: "inet"
+    port: "submission"
+    addr: null
+    modifiers: "Ea"
+
+sendmail_mc_local_mailer: "local"
+sendmail_mc_mailers: ["local", "smtp"]
+
+sendmail_mc_connection_rate_throttle: "15"
+sendmail_mc_connection_rate_window_size: "10m"
+sendmail_mc_greet_pause: "1000"
+sendmail_mc_bad_rcpt_throttle: "3"
+
+sendmail_mc_masquerade_as: "{{ ansible_fqdn }}"
+sendmail_mc_masquerade_always_add_domain: true
+sendmail_mc_masquerade_all: true
+sendmail_mc_masquerade_envelope: true
+sendmail_mc_masquerade_exceptions: []
+
+sendmail_mc_generics: false
+sendmail_mc_generics_entire_domain: false
+
+sendmail_mc_mailertable: false
+
+sendmail_access_table: []
+sendmail_generics_table: []

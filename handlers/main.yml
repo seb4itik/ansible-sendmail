@@ -1,0 +1,25 @@
+- name: Restart ClamAV
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: "restarted"
+  loop:
+    - "clamav-daemon"
+    - "clamav-freshclam"
+    - "clamav-milter"
+
+- name: Restart OpenDKIM
+  ansible.builtin.service:
+    name: "opendkim"
+    state: "restarted"
+
+- name: Compile Sendmail config
+  listen: Restart Sendmail
+  changed_when: true
+  ansible.builtin.command:
+    cmd: "make -C /etc/mail"
+
+- name: Restart service Sendmail
+  listen: Restart Sendmail
+  ansible.builtin.service:
+    name: "sendmail"
+    state: "restarted"

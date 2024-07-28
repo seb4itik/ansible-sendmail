@@ -1,0 +1,29 @@
+sendmail_access_table_default:
+  "Connect:localhost": "RELAY"
+  "GreetPause:localhost": "0"
+  "ClientRate:localhost": "0"
+  "ClientConn:localhost": "0"
+
+  "Connect:127": "RELAY"
+  "GreetPause:127": "0"
+  "ClientRate:127": "0"
+  "ClientConn:127": "0"
+
+  "Connect:IPv6:::1": "RELAY"
+  "GreetPause:IPv6:::1": "0"
+  "ClientRate:IPv6:::1": "0"
+  "ClientConn:IPv6:::1": "0"
+
+  "GreetPause:": "5000"
+  "ClientRate:": "10"
+  "ClientConn:": "10"
+
+  "Spam:postmaster@": "FRIEND"
+  "Spam:abuse@": "FRIEND"
+  "Spam:spam@": "FRIEND"
+  "reject@": "REJECT"
+
+  "Connect:169.254": REJECT
+  "Connect:192.0.2": REJECT
+  "Connect:224": "REJECT"
+  "Connect:255": "REJECT"

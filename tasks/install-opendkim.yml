@@ -1,0 +1,36 @@
+- name: Install OpenDKIM packages
+  ansible.builtin.apt:
+    name:
+      - "opendkim"
+  notify: Restart OpenDKIM
+
+- name: Configure OpenDKIM
+  ansible.builtin.lineinfile:
+    path: "/etc/opendkim.conf"
+    regexp: "^\\s*#?\\s*{{ item.key }}\\s"
+    line: "{{ item.key }}\t{{ item.value }}"
+  loop: "{{ sendmail_opendkim_config | dict2items }}"
+  notify: Restart OpenDKIM
+
+- name: Create OpenDKIM configuration dir
+  ansible.builtin.file:
+    path: "/etc/opendkim"
+    state: "directory"
+    mode: "0755"
+
+- name: Copy OpenDKIM config files
+  ansible.builtin.template:
+    src: "templates/dkim/{{ item }}"
+    dest: "/etc/opendkim"
+    mode: "0644"
+  loop:
+    - "SigningTable"
+    - "KeyTable"
+    - "TrustedHosts"
+  notify: Restart OpenDKIM
+
+- name: Enable OpenDKIM service
+  ansible.builtin.service:
+    name: "opendkim"
+    state: "started"
+    enabled: true

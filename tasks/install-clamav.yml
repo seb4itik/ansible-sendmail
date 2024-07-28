@@ -1,0 +1,22 @@
+- name: Install ClamAV packages
+  ansible.builtin.apt:
+    name:
+      - "clamav"
+      - "clamav-milter"
+
+# FIXME
+- name: Install ClamAV unofficial signatures package
+  when: sendmail_clamav_unofficial_sigs
+  ansible.builtin.apt:
+    name:
+      - "clamav-unofficial-sigs"
+
+- name: Enable ClamAV services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: "started"
+    enabled: true
+  loop:
+    - "clamav-daemon"
+    - "clamav-freshclam"
+    - "clamav-milter"

@@ -1,0 +1,3 @@
+{% for k, v in generics_table.items() %}
+{{ k }}	{{ v }}
+{% endfor %}

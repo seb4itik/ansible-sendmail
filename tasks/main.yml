@@ -1,0 +1,10 @@
+- name: Install ClamAV
+  when: sendmail_clamav
+  ansible.builtin.include_tasks: "install-clamav.yml"
+
+- name: Install OpenDKIM
+  when: sendmail_opendkim
+  ansible.builtin.include_tasks: "install-opendkim.yml"
+
+- name: Install ClamAV
+  ansible.builtin.include_tasks: "install-sendmail.yml"

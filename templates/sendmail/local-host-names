@@ -1,0 +1,6 @@
+localhost
+{{ ansible_hostname }}
+{{ ansible_fqdn }}
+{% for domain in sendmail_mail_domains %}
+{{ domain }}
+{% endfor %}
