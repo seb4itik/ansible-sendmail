@@ -1,6 +1,7 @@
 # Ansible role sendmail
 
-FIXME
+WORK IN PROGRESS! DO NOT USE.
+(But stay tuned.)
 
 ## Features
 
