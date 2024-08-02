@@ -51,10 +51,17 @@
   notify: Restart Sendmail
 
 - name: Link SASL configuration file
+  when: sendmail_mc_sasl
   ansible.builtin.file:
     src: "/etc/mail/sasl/Sendmail.conf.2"
     dest: "/usr/lib/sasl2/Sendmail.conf"
-    state: "{{ sendmail_mc_sasl | ternary('link', 'absent') }}"
+    state: "link"
+
+- name: Unlink SASL configuration file
+  when: not sendmail_mc_sasl
+  ansible.builtin.file:
+    dest: "/usr/lib/sasl2/Sendmail.conf"
+    state: "absent"
 
 - name: Enable Sendmail service
   ansible.builtin.service:
