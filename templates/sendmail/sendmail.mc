@@ -11,8 +11,8 @@ dnl # Items controlled by /etc/mail/sendmail.conf - DO NOT TOUCH HERE
 
 dnl # Daemon options
 FEATURE(`no_default_msa')dnl
-{% for d in sendmail_mc_daemons %}
-DAEMON_OPTIONS(`Family={{ d.family }}, Name={{ d.name }}, Port={{ d.port }}{% if d.modifiers is not none %}, M={{ d.modifiers }}{% endif %}{% if d.addr is not none %}, Addr={{ d.addr}}{% endif %}')dnl
+{% for k, v in mc_daemons %}
+DAEMON_OPTIONS(`Name={{ k }}, Family={{ v.family }}, Port={{ v.port }}{% if v.modifiers is not none %}, M={{ v.modifiers }}{% endif %}{% if v.addr is not none %}, Addr={{ v.addr }}{% endif %}')dnl
 {% endfor %}
 
 dnl # MILTER Configurations
@@ -48,6 +48,9 @@ define( `confREFUSE_LA', `{{ sendmail_mc_refuse_la }}')dnl
 
 {% if sendmail_mc_smart_host is not none %}
 define(`SMART_HOST', `{{ sendmail_mc_smart_host }}')dnl
+
+{% if sendmail_mc_relay_mailer_args is not none %}
+define(`RELAY_MAILER_ARGS', `{{ sendmail_mc_relay_mailer_args }}')dnl 
 {% endif %}
 
 {% if sendmail_mc_ldap %}

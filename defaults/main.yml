@@ -46,6 +46,7 @@ sendmail_mc_auth_options: null
 
 sendmail_mc_refuse_la: null
 sendmail_mc_smart_host: null
+sendmail_mc_relay_mailer_args: null
 
 sendmail_mc_ldap: false
 sendmail_mc_ldap_default_spec: ""
@@ -58,19 +59,7 @@ sendmail_mc_ldap_virtusertable_k: ""
 sendmail_mc_max_message_size: null
 sendmail_mc_to_ident: 0
 
-# FIXME: changer en dict. avec un merge
-sendmail_mc_daemons:
-  - name: "MTA-v4"
-    family: "inet"
-    port: "smtp"
-    addr: null
-    modifiers: null
-  - name: "MSP-v4"
-    family: "inet"
-    port: "submission"
-    addr: null
-    modifiers: "Ea"
-
+sendmail_mc_daemons: {}
 sendmail_mc_local_mailer: "local"
 sendmail_mc_mailers: ["local", "smtp"]
 

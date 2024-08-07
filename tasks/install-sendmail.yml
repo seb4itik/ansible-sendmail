@@ -11,6 +11,7 @@
 
 - name: Deploy Sendmail configuration files
   vars:
+    mc_daemons: "{{ sendmail_mc_daemons_default | ansible.builtin.combine(sendmail_mc_daemons, recursive=true) }}"
     access_table: "{{ sendmail_access_table_default | ansible.builtin.combine(sendmail_access_table) }}"
   ansible.builtin.template:
     src: "templates/sendmail/{{ item }}"
