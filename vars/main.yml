@@ -3,6 +3,7 @@ sendmail_mc_daemons_default:
     family: "inet"
     port: "smtp"
     addr: "127.0.0.1"
+    modifiers: null
   "MSP-v4":
     family: "inet"
     port: "submission"
