@@ -35,11 +35,11 @@ define(`confPRIVACY_FLAGS',dnl
 {% if sendmail_mc_sasl %}
 include(`/etc/mail/sasl/sasl.m4')dnl
 {% endif %}
-{% if sendmail_mc_sasl %}
+{% if sendmail_mc_tls %}
 include(`/etc/mail/tls/starttls.m4')dnl
 {% endif %}
 {% if sendmail_mc_auth_options is not none %}
-define(`confAUTH_OPTIONS',`p')dnl
+define(`confAUTH_OPTIONS',`{{ sendmail_mc_auth_options }}')dnl
 {% endif %}
 
 {% if sendmail_mc_refuse_la is not none %}
@@ -49,7 +49,6 @@ define( `confREFUSE_LA', `{{ sendmail_mc_refuse_la }}')dnl
 {% if sendmail_mc_smart_host is not none %}
 define(`SMART_HOST', `{{ sendmail_mc_smart_host }}')dnl
 {% endif %}
-
 {% if sendmail_mc_relay_mailer_args is not none %}
 define(`RELAY_MAILER_ARGS', `{{ sendmail_mc_relay_mailer_args }}')dnl 
 {% endif %}
