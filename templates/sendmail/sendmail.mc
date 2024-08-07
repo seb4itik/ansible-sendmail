@@ -11,7 +11,7 @@ dnl # Items controlled by /etc/mail/sendmail.conf - DO NOT TOUCH HERE
 
 dnl # Daemon options
 FEATURE(`no_default_msa')dnl
-{% for k, v in mc_daemons %}
+{% for k, v in mc_daemons.items() %}
 DAEMON_OPTIONS(`Name={{ k }}, Family={{ v.family }}, Port={{ v.port }}{% if v.modifiers is not none %}, M={{ v.modifiers }}{% endif %}{% if v.addr is not none %}, Addr={{ v.addr }}{% endif %}')dnl
 {% endfor %}
 
