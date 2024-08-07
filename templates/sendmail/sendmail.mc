@@ -48,6 +48,7 @@ define( `confREFUSE_LA', `{{ sendmail_mc_refuse_la }}')dnl
 
 {% if sendmail_mc_smart_host is not none %}
 define(`SMART_HOST', `{{ sendmail_mc_smart_host }}')dnl
+{% endif %}
 
 {% if sendmail_mc_relay_mailer_args is not none %}
 define(`RELAY_MAILER_ARGS', `{{ sendmail_mc_relay_mailer_args }}')dnl 
