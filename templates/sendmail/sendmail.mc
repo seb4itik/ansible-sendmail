@@ -1,8 +1,8 @@
 define(`_USE_ETC_MAIL_')dnl
 include(`/usr/share/sendmail/cf/m4/cf.m4')dnl
 OSTYPE(`{{ sendmail_mc_ostype }}')dnl
-{% if sendmail_mc_domain != "" %}
-DOMAIN(`{{ sendmail_mc_domain }}')dnl
+{% if sendmail_mc_sendmail_domain != "" %}
+DOMAIN(`{{ sendmail_mc_sendmail_domain }}')dnl
 {% endif %}
 
 dnl # Items controlled by /etc/mail/sendmail.conf - DO NOT TOUCH HERE
