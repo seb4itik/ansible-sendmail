@@ -10,7 +10,7 @@ dnl # Masquerading options
 {% if sendmail_mc_masquerade_always_add_domain %}
 FEATURE(`always_add_domain')dnl
 {% endif %}
-MASQUERADE_AS(`sendmail_mc_masquerade_as')dnl
+MASQUERADE_AS(`{{ sendmail_mc_masquerade_as }}')dnl
 {% if sendmail_mc_masquerade_all %}
 FEATURE(`allmasquerade')dnl
 {% endif %}
