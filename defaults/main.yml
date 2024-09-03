@@ -81,5 +81,7 @@ sendmail_mc_generics_entire_domain: false
 
 sendmail_mc_mailertable: false
 
+sendmail_mc_milters: []
+
 sendmail_access_table: []
 sendmail_generics_table: []

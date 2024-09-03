@@ -22,6 +22,9 @@ include(`/etc/mail/m4/clamav-milter.m4')
 {% if sendmail_opendkim %}
 INPUT_MAIL_FILTER(`opendkim', `S=inet:8891@127.0.0.1')dnl
 {% endif %}
+{% for m in sendmail_mc_milters %}
+INPUT_MAIL_FILTER(`{{ m.name }}', `S={{ m.socket }},F={{ m.on_failure | default('R') }},T={% if m.timeouts.connect!=None %}C:{{ m.timeouts.connect }};{% endif %}{% if m.timeouts.send!=None %}S:{{ m.timeouts.send }};{% endif %}{% if m.timeouts.read!=None %}R:{{ m.timeouts.read }};{% endif %}{% if m.timeouts.overall!=None %}E:{{ m.timeouts.overall }};{% endif %}')
+{% endfor %}
 
 dnl # Host name configuration
 define(`confSMTP_LOGIN_MSG', `{{ ansible_fqdn }}')dnl
