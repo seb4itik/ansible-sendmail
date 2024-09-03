@@ -16,7 +16,8 @@
   listen: Restart Sendmail
   changed_when: true
   ansible.builtin.command:
-    cmd: "make -C /etc/mail"
+    chdir: "/etc/mail"
+    cmd: "/usr/share/sendmail/update_sendmail && make"
 
 - name: Restart service Sendmail
   listen: Restart Sendmail
