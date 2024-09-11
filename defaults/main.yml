@@ -43,6 +43,9 @@ sendmail_mc_sendmail_domain: "{{ (ansible_distribution == 'Debian') | ternary('d
 sendmail_mc_submit_domain: "{{ (ansible_distribution == 'Debian') | ternary('debian-msp', '') }}"
 
 sendmail_mc_sasl: false
+sendmail_mc_sasl_to_auth: "2m"
+sendmail_mc_sasl_realm: ""
+sendmail_mc_sasl_mechs: "DIGEST-MD5 CRAM-MD5 NTLM LOGIN PLAIN"
 sendmail_mc_tls: false
 sendmail_mc_auth_options: null
 

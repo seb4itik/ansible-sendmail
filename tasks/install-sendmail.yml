@@ -27,6 +27,14 @@
     - "trusted-users"
   notify: Restart Sendmail
 
+- name: Deploy Sendmail sasl.m4 file
+  when: sendmail_mc_sasl
+  ansible.builtin.template:
+    src: "templates/sendmail/sasl.m4"
+    dest: "/etc/mail/sasl/sasl.m4"
+    mode: "0644"
+  notify: Restart Sendmail
+
 - name: Deploy Sendmail starttls.m4 file
   when: sendmail_mc_tls
   ansible.builtin.template:
