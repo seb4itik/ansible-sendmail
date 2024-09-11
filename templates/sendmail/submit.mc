@@ -5,6 +5,9 @@ OSTYPE(`{{ sendmail_mc_ostype }}')dnl
 DOMAIN(`{{ sendmail_mc_submit_domain }}')dnl
 {% endif %}
 
+dnl # use /etc/mail/trusted-users
+FEATURE(`use_ct_file')dnl
+
 {% if sendmail_mc_masquerade_as != "" %}
 dnl # Masquerading options
 {% if sendmail_mc_masquerade_always_add_domain %}

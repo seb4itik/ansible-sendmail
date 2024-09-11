@@ -18,12 +18,13 @@
     dest: "/etc/mail/{{ item }}"
     mode: "0644"
   loop:
+    - "access"
+    - "domains"
+    - "local-host-names"
     - "sendmail.conf"
     - "sendmail.mc"
     - "submit.mc"
-    - "local-host-names"
-    - "access"
-    - "domains"
+    - "trusted-users"
   notify: Restart Sendmail
 
 - name: Deploy Sendmail starttls.m4 file

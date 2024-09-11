@@ -85,3 +85,4 @@ sendmail_mc_milters: []
 
 sendmail_access_table: []
 sendmail_generics_table: []
+sendmail_trusted_users: []

@@ -87,6 +87,9 @@ dnl # Features
 dnl # use /etc/mail/local-host-names
 FEATURE(`use_cw_file')dnl
 
+dnl # use /etc/mail/trusted-users
+FEATURE(`use_ct_file')dnl
+
 dnl # The access db is the basis for most of sendmail's checking
 FEATURE(`access_db', , `skip')dnl
 

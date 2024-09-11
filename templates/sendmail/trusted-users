@@ -1,0 +1,3 @@
+{% for user in sendmail_trusted_users %}
+{{ user }}
+{% endfor %}
