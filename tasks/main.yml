@@ -1,3 +1,6 @@
+- name: Include distribution specific variables
+  ansible.builtin.include_vars: "vars/distrib_{{ ansible_os_family }}.yml"
+
 - name: Install ClamAV
   when: sendmail_clamav
   ansible.builtin.include_tasks: "install-clamav.yml"
@@ -6,5 +9,5 @@
   when: sendmail_opendkim
   ansible.builtin.include_tasks: "install-opendkim.yml"
 
-- name: Install ClamAV
+- name: Install Sendmail
   ansible.builtin.include_tasks: "install-sendmail.yml"

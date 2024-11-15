@@ -38,10 +38,6 @@ sendmail_ssl_cacert: ""
 sendmail_ssl_cert: ""
 sendmail_ssl_key: ""
 
-sendmail_mc_ostype: "{{ ansible_distribution | lower }}"
-sendmail_mc_sendmail_domain: "{{ (ansible_distribution == 'Debian') | ternary('debian-mta', '') }}"
-sendmail_mc_submit_domain: "{{ (ansible_distribution == 'Debian') | ternary('debian-msp', '') }}"
-
 sendmail_mc_sasl: false
 sendmail_mc_sasl_to_auth: "2m"
 sendmail_mc_sasl_realm: ""
@@ -86,6 +82,7 @@ sendmail_mc_mailertable: false
 
 sendmail_mc_milters: []
 
+sendmail_mail_domains: []
 sendmail_access_table: []
 sendmail_generics_table: []
 sendmail_trusted_users: []

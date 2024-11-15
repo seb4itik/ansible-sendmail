@@ -1,0 +1,3 @@
+sendmail_mc_ostype: "debian"
+sendmail_mc_sendmail_domain: "debian-mta"
+sendmail_mc_submit_domain: "debian-msp"

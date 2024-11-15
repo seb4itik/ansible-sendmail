@@ -32,8 +32,7 @@ Dw{{ ansible_hostname }}
 Dj{{ ansible_fqdn }}
 
 dnl # Be somewhat anal in what we allow
-define(`confPRIVACY_FLAGS',dnl
-`needmailhelo,needexpnhelo,needvrfyhelo,restrictqrun,restrictexpand,nobodyreturn,authwarnings')dnl
+define(`confPRIVACY_FLAGS',`needmailhelo,needexpnhelo,needvrfyhelo,restrictqrun,restrictexpand,nobodyreturn,authwarnings')dnl
 
 {% if sendmail_mc_sasl %}
 include(`/etc/mail/sasl/sasl.m4')dnl
