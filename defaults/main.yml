@@ -69,7 +69,7 @@ sendmail_mc_connection_rate_window_size: "10m"
 sendmail_mc_greet_pause: "1000"
 sendmail_mc_bad_rcpt_throttle: "3"
 
-sendmail_mc_masquerade_as: "{{ ansible_fqdn }}"
+sendmail_mc_masquerade_as: ""
 sendmail_mc_masquerade_always_add_domain: true
 sendmail_mc_masquerade_all: true
 sendmail_mc_masquerade_envelope: true
